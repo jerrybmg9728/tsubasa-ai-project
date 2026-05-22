@@ -202,6 +202,8 @@ Secondary:
 
 ```text
 /docs
+/docs/meeting-notes
+/docs/architecture
 /frontend
 /backend
 /infra
