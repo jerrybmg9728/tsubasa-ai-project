@@ -1,68 +1,229 @@
 # Tsubasa AI Project
 
-## 1. プロジェクト目的
-- 社内AI基盤の構築
-- 業務効率化
-- ナレッジ蓄積
-- 経営判断支援
+社内AIナレッジアシスタントプロジェクト
 
-## 2. ビジョン
-Tsubasa AI Project は、株式会社エコツバサ貿易の業務・知識・判断を支える社内AI基盤を構築するプロジェクトです。  
-まずは「社内AI相談室」として現場で使える形から立ち上げ、段階的に社内知識の統合、業務支援、自動化へ拡張していきます。
+---
 
-## 3. 想定機能
-- 社内チャットAI
-- 会議議事録の自動整理・要約
-- 社内ドキュメント検索
-- タイヤ事業データ管理
-- 営業支援
-- 経営判断に必要な情報の可視化・整理
+## プロジェクト概要
 
-## 4. リポジトリ構成
+Tsubasa AI Project は、社内業務効率化を目的とした AI ナレッジアシスタント構築プロジェクトです。
+
+社員が自然言語でAIと会話しながら、社内資料・業務データ・価格情報・通関資料・財務情報などに素早くアクセスできる環境を作ります。
+
+最終的には、単なる検索ツールではなく、
+
+> 「社員一人ひとりを支援する AI パートナー」
+
+として、会社全体の生産性向上を目指します。
+
+---
+
+## プロジェクトビジョン
+
+### 1. 社内ナレッジの統合
+
+散在している資料を一元化し、社員が必要な情報を即座に取得できる状態を作る。
+
+対象データ：
+
+- タイヤ価格表
+- 商品資料
+- タイヤ型番・スペック
+- 顧客向け資料
+- 通関書類
+- 過去見積
+- 財務資料
+- SOP / 社内ルール
+
+---
+
+### 2. AI社員アシスタント化
+
+社員は AI とチャット形式で会話する。
+
+例：
+
+「385/65R22.5 の価格を教えて」
+
+「○○社の過去の見積を探して」
+
+「2023年の通関資料ある？」
+
+「この商品のスペックは？」
+
+AIは出典付きで回答。
+
+---
+
+### 3. 経営改善
+
+社員の質問ログを分析し、
+
+- 業務上の課題
+- 教育不足領域
+- 非効率業務
+- 自動化可能領域
+
+を発見する。
+
+最終的に：
+
+> AI を活用した継続的な業務改善
+
+を実現する。
+
+---
+
+## システム構想
+
+### Frontend
+
+- Web Application
+- PC / iPad / Smartphone 対応
+- Chat UI
+- 吉祥物ベースの会話体験
+
+候補：
+
+- Next.js
+- React
+
+---
+
+### Backend
+
+- Dify
+- Agent Workflow
+- RAG System
+
+---
+
+### AI Models
+
+Primary:
+- OpenAI (GPT)
+
+Secondary:
+- Claude
+
+将来的には：
+- OSS model
+- local LLM
+
+も検討。
+
+---
+
+### Database
+
+- PostgreSQL
+- pgvector
+
+---
+
+### Hardware
+
+- Mac Studio
+- NAS
+- Local storage
+
+---
+
+## 開発ロードマップ
+
+### Phase 1 (MVP)
+
+最小構成：
+
+- タイヤ価格検索
+- 商品資料検索
+- チャットUI
+
+目的：
+
+> 社員が AI に慣れる
+
+---
+
+### Phase 2
+
+追加：
+
+- 通関資料
+- 過去見積
+- OCR
+
+目的：
+
+> 検索効率化
+
+---
+
+### Phase 3
+
+追加：
+
+- 財務データ
+- 部門別権限
+
+目的：
+
+> 経営支援
+
+---
+
+### Phase 4
+
+追加：
+
+- 社員課題分析
+- AI Agent
+- 自動化
+
+目的：
+
+> AI Driven Company
+
+---
+
+## 吉祥物構想
+
+社内AIアシスタントを「吉祥物キャラクター」として表現。
+
+仮称：
+
+翼ちゃん（Tsubasa AI）
+
+社員が自然に話しかけられる存在を目指す。
+
+---
+
+## Repository Structure
+
 ```text
 /docs
-/src
-/meeting-notes
+/frontend
+/backend
+/infra
+/prompts
+/assets
 ```
 
-### ディレクトリの役割
-- `/docs` : 企画書、設計書、運用方針、要件定義
-- `/src` : 実装コード
-- `/meeting-notes` : 会議メモ、議事録、決定事項ログ
+---
 
-## 5. 開発体制
+## Current Status
 
-### 役割分担
-- **Jerry**: オーナー / 意思決定者
-- **Nova (OpenClaw)**: Jerryの個人秘書AI / 企画整理 / 要件整理 / Markdown管理 / 進行管理
-- **ChatGPT**: 発想支援 / 文章化 / 調査補助
-- **Claude Code**: 実装 / リファクタ / 重い開発作業
-- **Codex**: 実装補助 / 技術検討 / コード生成
+Planning Phase (v0.1)
 
-### 開発フロー
-```mermaid
-flowchart TD
-    A[Jerry<br/>オーナー / 意思決定者] --> B[Nova (OpenClaw)<br/>個人秘書AI / PM補助]
-    B --> C[docs/01-ideas.md<br/>アイデア・課題・要望を蓄積]
-    C --> D[整理・構造化<br/>Nova / ChatGPT]
-    D --> E[docs/02-priorities.md<br/>優先順位を整理]
-    E --> F[docs/03-mvp-plan.md<br/>最初に作る範囲を定義]
-    F --> G[Claude Code / Codex<br/>実装・開発・技術検討]
-    G --> H[テスト・改善・ナレッジ蓄積]
-```
+- [x] Vision Defined
+- [x] Architecture Discussion
+- [x] GitHub Repository Created
+- [ ] MVP Development
+- [ ] Dify Integration
+- [ ] Employee Testing
 
-## 6. 今日までの決定事項
-- GitHubリポジトリを作成して管理する
-- private運用を前提とする
-- 段階導入で進める
-  - Phase 1: 社内AI相談室
-  - Phase 2: 社内知識検索
-  - Phase 3: 一部業務自動化
-- AIチーム分業で開発を進める
+---
 
-## 7. 次アクション
-- `docs/01-ideas.md` を作成し、アイデアを書き溜める
-- `docs/02-priorities.md` を作成し、優先順位を整理する
-- `docs/03-mvp-plan.md` を作成し、MVP範囲を定義する
-- 優先ユースケースを確定する
-- 使用技術・構成案を整理する
+## Long-Term Goal
+
+Build an internal AI ecosystem that continuously improves business operations, employee productivity, and management efficiency.
